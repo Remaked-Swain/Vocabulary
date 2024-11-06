@@ -9,9 +9,10 @@ import Foundation
 import SwiftData
 
 @Model
-final class Word {
+class Word {
     var text: String
     var meaning: String
+    var folder: Folder?
     
     init(
         text: String,
