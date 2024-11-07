@@ -13,6 +13,7 @@ struct VocabularyApp: App {
     var modelContainer: ModelContainer = {
         let schema = Schema([
             Word.self,
+            Folder.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
