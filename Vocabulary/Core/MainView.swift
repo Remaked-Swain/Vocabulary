@@ -9,8 +9,15 @@ import SwiftUI
 import SwiftData
 
 struct MainView: View {
+    private struct Namespace {
+        static let defaultFolderName: String = "새 폴더"
+    }
+    
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Folder.createdAt) private var folders: [Folder]
+    
+    @State private var isSheetPresented: Bool = false
+    @State private var newFolderName: String = Namespace.defaultFolderName
     
     var body: some View {
         NavigationStack {
@@ -29,17 +36,34 @@ struct MainView: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: createFolder) {
+                    Button(action: presentSheet) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
+            .alert("새로운 폴더 만들기", isPresented: $isSheetPresented) {
+                VStack {
+                    TextField("새로운 폴더 이름", text: $newFolderName, prompt: Text("새 폴더"))
+                    
+                    Button {
+                        createFolder()
+                    } label: {
+                        Text("확인")
+                    }
+                }
+            } message: {
+                Text("새로운 폴더를 생성합니다.")
+            }
         }
+    }
+    
+    private func presentSheet() {
+        isSheetPresented.toggle()
     }
     
     private func createFolder() {
         withAnimation {
-            let newFolder = Folder(name: "새로운 폴더")
+            let newFolder = Folder(name: newFolderName.isEmpty ? "새 폴더" : newFolderName)
             modelContext.insert(newFolder)
         }
     }
@@ -55,38 +79,5 @@ struct MainView: View {
 
 #Preview {
     MainView()
-        .modelContainer(for: Word.self, inMemory: true)
-}
-
-struct FolderView: View {
-    private let folder: Folder
-    
-    init(_ folder: Folder) {
-        self.folder = folder
-    }
-    
-    var body: some View {
-        List {
-            ForEach(folder.words) { word in
-                Text(word.text)
-            }
-            .onDelete(perform: deleteWord)
-        }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button(action: createWord) {
-                    Label("단어 추가", systemImage: "plus.app")
-                }
-            }
-        }
-    }
-    
-    private func createWord() {
-        let newWord = Word(text: "new", meaning: "new")
-        folder.words.append(newWord)
-    }
-    
-    private func deleteWord(offsets: IndexSet) {
-        folder.words.remove(atOffsets: offsets)
-    }
+        .modelContainer(for: [Word.self, Folder.self], inMemory: true)
 }
