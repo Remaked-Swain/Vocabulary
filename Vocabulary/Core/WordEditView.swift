@@ -27,12 +27,6 @@ struct WordEditView: View {
     ) {
         self.folder = folder
         self.word = word
-        
-        if let word = word {
-            self.originalText = word.text
-            self.reading = word.reading
-            self.meaning = word.meaning
-        }
     }
     
     var body: some View {
@@ -57,6 +51,13 @@ struct WordEditView: View {
                     .font(.headline)
             }
             .disabled(textFieldIsEmpty)
+        }
+        .onAppear {
+            if let word = word {
+                originalText = word.text
+                reading = word.reading
+                meaning = word.meaning
+            }
         }
     }
     
