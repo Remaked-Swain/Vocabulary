@@ -30,33 +30,55 @@ struct WordEditView: View {
     }
     
     var body: some View {
-        VStack(spacing: 20) {
+        VStack {
+            Spacer()
+            
             TextField("원문", text: $originalText)
                 .handwritableTextFieldStyle()
+            
+            Spacer()
             
             TextField("읽는 방법", text: $reading)
                 .handwritableTextFieldStyle()
             
+            Spacer()
+            
             TextField("의미", text: $meaning)
                 .handwritableTextFieldStyle()
             
-            Button {
-                guard let word  = word else {
-                    createWord()
-                    return
-                }
-                updateWord(word: word)
-            } label: {
-                Text("저장")
-                    .font(.headline)
-            }
-            .disabled(textFieldIsEmpty)
+            Spacer()
         }
+        .padding()
         .onAppear {
             if let word = word {
                 originalText = word.text
                 reading = word.reading
                 meaning = word.meaning
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                Button {
+                    guard let word  = word else {
+                        createWord()
+                        return
+                    }
+                    updateWord(word: word)
+                } label: {
+                    Text("저장")
+                        .font(.headline)
+                }
+                .disabled(textFieldIsEmpty)
+            }
+            
+            ToolbarItem(placement: .bottomBar) {
+                Button {
+                    initializeReviewCount()
+                } label: {
+                    Text("복습 횟수 초기화")
+                        .font(.headline)
+                }
+                .disabled(word?.isReviewed ?? true)
             }
         }
     }
@@ -72,5 +94,9 @@ struct WordEditView: View {
         word.reading = reading
         word.meaning = meaning
         dismiss()
+    }
+    
+    private func initializeReviewCount() {
+        word?.reviewCount = .zero
     }
 }
