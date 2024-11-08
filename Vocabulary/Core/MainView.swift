@@ -26,11 +26,18 @@ struct MainView: View {
                     NavigationLink {
                         FolderView(folder)
                     } label: {
-                        Text(folder.name)
+                        VStack(alignment: .leading) {
+                            Text(folder.name)
+                                .font(.headline)
+                            
+                            Text("단어 개수: \(folder.words.count)")
+                                .font(.subheadline)
+                        }
                     }
                 }
                 .onDelete(perform: deleteFolder)
             }
+            .navigationTitle("단어장")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
