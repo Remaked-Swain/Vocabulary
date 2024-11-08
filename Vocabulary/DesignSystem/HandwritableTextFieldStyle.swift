@@ -11,7 +11,7 @@ struct HandwritableTextFieldStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding()
-            .font(.title3.bold())
+            .font(.title.bold())
             .frame(maxWidth: .infinity)
             .background(.thinMaterial)
             .clipShape(.rect(cornerRadius: 14))
