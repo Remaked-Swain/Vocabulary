@@ -15,7 +15,7 @@ import SwiftData
 final class Folder {
     var name: String
     var createdAt: Date
-    @Relationship(deleteRule: .cascade, inverse: \Word.folder) var words: [Word] = []
+    @Relationship(deleteRule: .cascade) var words: [Word] = []
     
     init(
         name: String,

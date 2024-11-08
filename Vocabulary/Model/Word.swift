@@ -11,14 +11,21 @@ import SwiftData
 @Model
 class Word {
     var text: String
+    var reading: String
     var meaning: String
-    var folder: Folder?
+    var folder: Folder
+    var reviewCount: Int = 0
+    var isReviewed: Bool { reviewCount > 3 }
     
     init(
         text: String,
-        meaning: String
+        reading: String,
+        meaning: String,
+        in folder: Folder
     ) {
         self.text = text
+        self.reading = reading
         self.meaning = meaning
+        self.folder = folder
     }
 }
