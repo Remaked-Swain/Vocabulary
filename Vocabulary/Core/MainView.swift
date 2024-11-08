@@ -51,6 +51,7 @@ struct MainView: View {
             .alert("새로운 폴더 만들기", isPresented: $isSheetPresented) {
                 VStack {
                     TextField("새로운 폴더 이름", text: $newFolderName, prompt: Text("새 폴더"))
+                        .handwritableTextFieldStyle()
                     
                     Button {
                         createFolder()
