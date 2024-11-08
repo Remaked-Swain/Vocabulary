@@ -47,17 +47,18 @@ struct WordEditView: View {
                 .handwritableTextFieldStyle()
             
             Spacer()
-        }
-        .padding()
-        .onAppear {
-            if let word = word {
-                originalText = word.text
-                reading = word.reading
-                meaning = word.meaning
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .bottomBar) {
+            
+            HStack {
+                Button {
+                    initializeReviewCount()
+                } label: {
+                    Text("복습 횟수 초기화")
+                        .font(.headline)
+                }
+                .disabled(word?.isReviewed ?? true)
+                
+                Spacer()
+                
                 Button {
                     guard let word  = word else {
                         createWord()
@@ -70,15 +71,14 @@ struct WordEditView: View {
                 }
                 .disabled(textFieldIsEmpty)
             }
-            
-            ToolbarItem(placement: .bottomBar) {
-                Button {
-                    initializeReviewCount()
-                } label: {
-                    Text("복습 횟수 초기화")
-                        .font(.headline)
-                }
-                .disabled(word?.isReviewed ?? true)
+        }
+        .padding()
+        .safeAreaPadding()
+        .onAppear {
+            if let word = word {
+                originalText = word.text
+                reading = word.reading
+                meaning = word.meaning
             }
         }
     }
