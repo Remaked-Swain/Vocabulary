@@ -16,7 +16,7 @@ struct MainView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Folder.createdAt) private var folders: [Folder]
     
-    @State private var isSheetPresented: Bool = false
+    @State private var isAlertPresented: Bool = false
     @State private var newFolderName: String = Namespace.defaultFolderName
     
     var body: some View {
@@ -43,12 +43,12 @@ struct MainView: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: presentSheet) {
+                    Button(action: presentAlert) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
-            .alert("새로운 폴더 만들기", isPresented: $isSheetPresented) {
+            .alert("새로운 폴더 만들기", isPresented: $isAlertPresented) {
                 VStack {
                     TextField("새로운 폴더 이름", text: $newFolderName, prompt: Text("새 폴더"))
                         .handwritableTextFieldStyle()
@@ -58,6 +58,12 @@ struct MainView: View {
                     } label: {
                         Text("확인")
                     }
+                    
+                    Button {
+                        presentAlert()
+                    } label: {
+                        Text("취소")
+                    }
                 }
             } message: {
                 Text("새로운 폴더를 생성합니다.")
@@ -65,8 +71,8 @@ struct MainView: View {
         }
     }
     
-    private func presentSheet() {
-        isSheetPresented.toggle()
+    private func presentAlert() {
+        isAlertPresented.toggle()
     }
     
     private func createFolder() {
