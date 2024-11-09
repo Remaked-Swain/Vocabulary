@@ -20,24 +20,26 @@ struct WordCard: View {
         VStack(spacing: 10) {
             if showingSide == .foreground {
                 Text(word.text)
-                    .font(.headline)
+                    .font(.title2)
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
                 
                 Text(word.reading)
-                    .font(.subheadline)
+                    .font(.title3)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
             } else {
                 Text(word.meaning)
-                    .font(.headline)
+                    .font(.title3)
+                    .fontWeight(.bold)
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
-        .background(Color.white)
+        .background(.ultraThickMaterial)
         .cornerRadius(15)
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
         .overlay(
