@@ -10,7 +10,7 @@ import SwiftUI
 struct FolderView: View {
     private let folder: Folder
     
-    private let columns = [GridItem](repeating: .init(.flexible(), spacing: 10), count: 3)
+    private let columns = [GridItem](repeating: .init(.flexible(), spacing: 20), count: 3)
     
     @State private var displayingState: DisplayingState = .displayingGrid
     
@@ -21,7 +21,7 @@ struct FolderView: View {
     var body: some View {
         VStack {
             ScrollView(.vertical) {
-                LazyVGrid(columns: columns) {
+                LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(folder.words) { word in
                         WordCard(word)
                     }
@@ -39,11 +39,19 @@ struct FolderView: View {
         .padding()
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink {
-                    WordEditView(folder: folder, word: nil)
+                Button {
+                    let newWord = Word(text: "gd", reading: "gd", meaning: "gd", in: folder)
+                    folder.words.append(newWord)
                 } label: {
-                    Label("단어 추가", systemImage: "plus")
+                    Text("cnrk")
                 }
+
+                
+//                NavigationLink {
+//                    WordEditView(folder: folder, word: nil)
+//                } label: {
+//                    Label("단어 추가", systemImage: "plus")
+//                }
             }
         }
         .navigationTitle(folder.name)
