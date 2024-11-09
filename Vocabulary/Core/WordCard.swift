@@ -79,13 +79,3 @@ struct WordCard: View {
         }
     }
 }
-
-// MARK: Nested Types
-extension WordCard {
-    enum ShowingSide {
-        /// 단어의 원문과 읽는 방법이 노출되는 방향.
-        case foreground
-        /// 단어의 의미가 노출되는 방향.
-        case background
-    }
-}
