@@ -14,19 +14,11 @@
 			remoteGlobalIDString = 04B08F2A2CDB61C2001EB968;
 			remoteInfo = Vocabulary;
 		};
-		04B08F482CDB61C4001EB968 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04B08F232CDB61C2001EB968 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 04B08F2A2CDB61C2001EB968;
-			remoteInfo = Vocabulary;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		04B08F2B2CDB61C2001EB968 /* Vocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B08F3D2CDB61C4001EB968 /* VocabularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VocabularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		04B08F472CDB61C4001EB968 /* VocabularyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VocabularyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -57,13 +49,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		04B08F442CDB61C4001EB968 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -81,7 +66,6 @@
 			children = (
 				04B08F2B2CDB61C2001EB968 /* Vocabulary.app */,
 				04B08F3D2CDB61C4001EB968 /* VocabularyTests.xctest */,
-				04B08F472CDB61C4001EB968 /* VocabularyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,26 +118,6 @@
 			productReference = 04B08F3D2CDB61C4001EB968 /* VocabularyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		04B08F462CDB61C4001EB968 /* VocabularyUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 04B08F572CDB61C4001EB968 /* Build configuration list for PBXNativeTarget "VocabularyUITests" */;
-			buildPhases = (
-				04B08F432CDB61C4001EB968 /* Sources */,
-				04B08F442CDB61C4001EB968 /* Frameworks */,
-				04B08F452CDB61C4001EB968 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				04B08F492CDB61C4001EB968 /* PBXTargetDependency */,
-			);
-			name = VocabularyUITests;
-			packageProductDependencies = (
-			);
-			productName = VocabularyUITests;
-			productReference = 04B08F472CDB61C4001EB968 /* VocabularyUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -168,10 +132,6 @@
 						CreatedOnToolsVersion = 16.1;
 					};
 					04B08F3C2CDB61C4001EB968 = {
-						CreatedOnToolsVersion = 16.1;
-						TestTargetID = 04B08F2A2CDB61C2001EB968;
-					};
-					04B08F462CDB61C4001EB968 = {
 						CreatedOnToolsVersion = 16.1;
 						TestTargetID = 04B08F2A2CDB61C2001EB968;
 					};
@@ -193,7 +153,6 @@
 			targets = (
 				04B08F2A2CDB61C2001EB968 /* Vocabulary */,
 				04B08F3C2CDB61C4001EB968 /* VocabularyTests */,
-				04B08F462CDB61C4001EB968 /* VocabularyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -207,13 +166,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		04B08F3B2CDB61C4001EB968 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04B08F452CDB61C4001EB968 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -237,13 +189,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		04B08F432CDB61C4001EB968 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -251,11 +196,6 @@
 			isa = PBXTargetDependency;
 			target = 04B08F2A2CDB61C2001EB968 /* Vocabulary */;
 			targetProxy = 04B08F3E2CDB61C4001EB968 /* PBXContainerItemProxy */;
-		};
-		04B08F492CDB61C4001EB968 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 04B08F2A2CDB61C2001EB968 /* Vocabulary */;
-			targetProxy = 04B08F482CDB61C4001EB968 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -402,7 +342,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Vocabulary;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SwainVocabulary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -437,7 +377,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Vocabulary;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SwainVocabulary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -487,40 +427,6 @@
 			};
 			name = Release;
 		};
-		04B08F582CDB61C4001EB968 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = P85DW78LYM;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.VocabularyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Vocabulary;
-			};
-			name = Debug;
-		};
-		04B08F592CDB61C4001EB968 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = P85DW78LYM;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.VocabularyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Vocabulary;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -547,15 +453,6 @@
 			buildConfigurations = (
 				04B08F552CDB61C4001EB968 /* Debug */,
 				04B08F562CDB61C4001EB968 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		04B08F572CDB61C4001EB968 /* Build configuration list for PBXNativeTarget "VocabularyUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				04B08F582CDB61C4001EB968 /* Debug */,
-				04B08F592CDB61C4001EB968 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
