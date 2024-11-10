@@ -8,31 +8,43 @@
 import Foundation
 
 final class ReviewResult {
-    private let word: Word
-    private let showingSide: ShowingSide
-    var submittedAnswer: String?
-    var isCorrect: Bool {
-        guard let submittedAnswer = submittedAnswer else { return false }
-        
+    let word: Word
+    let showingSide: ShowingSide
+    var submittedAnswer: String = "없음"
+    var isCorrect: Bool = false
+    
+    private init(word: Word) {
+        self.word = word
+        self.showingSide = ShowingSide.random()
+    }
+    
+    private func evaluateAnswer() {
         switch showingSide {
         case .foreground:
-            return word.meaning == submittedAnswer
+            isCorrect = word.meaning == submittedAnswer
         case .background:
-            return word.text == submittedAnswer
+            isCorrect = word.text == submittedAnswer
         }
     }
     
-    private init(word: Word, showingSide: ShowingSide) {
-        self.word = word
-        self.showingSide = showingSide
+    static func build(word: Word) -> ReviewResult {
+        return .init(word: word)
     }
     
-    static func build(word: Word, showingSide: ShowingSide) -> ReviewResult {
-        return .init(word: word, showingSide: showingSide)
-    }
-    
-    func submitAnswer(_ answer: String) -> ReviewResult {
+    func submitAnswer(_ answer: String) {
         self.submittedAnswer = answer
-        return self
+        evaluateAnswer()
+    }
+    
+    func adjustCorrection(to state: CorrectionState) {
+        self.isCorrect = state == .correct ? true : false
+    }
+}
+
+// MARK: Nested Types
+extension ReviewResult {
+    enum CorrectionState {
+        case correct
+        case incorrect
     }
 }
