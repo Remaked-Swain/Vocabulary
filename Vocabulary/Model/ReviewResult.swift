@@ -10,7 +10,7 @@ import Foundation
 final class ReviewResult {
     let word: Word
     let showingSide: ShowingSide
-    var submittedAnswer: String = "없음"
+    var submittedAnswer: String = "-"
     var isCorrect: Bool = false
     
     private init(word: Word) {
