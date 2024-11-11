@@ -112,11 +112,11 @@ struct WordsReviewView: View {
     
     @ViewBuilder private func reviewResultListCell(_ reviewResult: ReviewResult) -> some View {
         HStack {
-            VStack(spacing: 20) {
+            HStack(spacing: 20) {
                 Text(reviewResult.word.text)
                     .font(.largeTitle.bold())
                 
-                HStack(spacing: 20) {
+                VStack(alignment: .leading, spacing: 20) {
                     Text(reviewResult.word.reading)
                     Text(reviewResult.word.meaning)
                 }
