@@ -12,7 +12,8 @@ import SwiftData
 class Word {
     var text: String
     var reading: String
-    var meaning: String
+    var meanings: [String]
+    var meaning: String { meanings.joined(separator: ", ") }
     var folder: Folder
     var reviewCount: Int = 0
     var isReviewed: Bool { reviewCount > 3 }
@@ -25,7 +26,7 @@ class Word {
     ) {
         self.text = text
         self.reading = reading
-        self.meaning = meaning
+        self.meanings = meaning.components(separatedBy: ",")
         self.folder = folder
     }
 }

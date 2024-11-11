@@ -21,7 +21,7 @@ final class ReviewResult {
     private func evaluateAnswer() {
         switch showingSide {
         case .foreground:
-            isCorrect = word.meaning == submittedAnswer
+            isCorrect = word.meanings.contains(submittedAnswer)
         case .background:
             isCorrect = word.text == submittedAnswer
         }
