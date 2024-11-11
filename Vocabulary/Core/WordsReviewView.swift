@@ -48,6 +48,7 @@ struct WordsReviewView: View {
                             .bigButtonStyle()
                             .disabled(reviewAnswerText.isEmpty)
                         }
+                        .safeAreaPadding(.all)
                     }
                 } else {
                     Text("모든 문제에 대한 답안을 제출하였습니다.\n채점 및 결과를 확인해주세요.")
