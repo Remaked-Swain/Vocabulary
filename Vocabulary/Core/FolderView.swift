@@ -98,6 +98,7 @@ struct FolderView: View {
                 }
             }
         }
+        .padding(.horizontal)
     }
     
     @ViewBuilder private func content(_ mode: DisplayMode) -> some View {
@@ -125,8 +126,6 @@ extension FolderView {
     }
     
     func toggleDisplayMode() {
-        isReviewCompleted = false
-        
         withAnimation(.smooth) {
             if displayMode == .inReviewing {
                 displayMode = .displayingGrid
@@ -134,6 +133,7 @@ extension FolderView {
                 displayMode = .inReviewing
             }
         }
+        isReviewCompleted = false
     }
     
     func evaluateReview() {

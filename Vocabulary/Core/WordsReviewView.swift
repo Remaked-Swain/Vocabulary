@@ -94,21 +94,6 @@ struct WordsReviewView: View {
                 Section {
                     ForEach(reviewResults, id: \.word.id) { reviewResult in
                         reviewResultListCell(reviewResult)
-                            .swipeActions {
-                                Button {
-                                    reviewResult.adjustCorrection(to: .correct)
-                                } label: {
-                                    Text("정답처리")
-                                }
-                                .tint(.green)
-                                
-                                Button {
-                                    reviewResult.adjustCorrection(to: .incorrect)
-                                } label: {
-                                    Text("오답처리")
-                                }
-                                .tint(.red)
-                            }
                     }
                 } header: {
                     HStack {
@@ -154,7 +139,7 @@ struct WordsReviewView: View {
         reviewResult.word.reviewCount += 1
         reviewAnswerText.removeAll()
         
-        withAnimation(.bouncy) {
+        withAnimation(.easeInOut) {
             tabViewSelectedIndex += 1
         }
     }
