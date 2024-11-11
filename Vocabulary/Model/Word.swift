@@ -13,7 +13,10 @@ class Word {
     var text: String
     var reading: String
     var meanings: [String]
-    var meaning: String { meanings.joined(separator: ", ") }
+    var meaning: String {
+        get { meanings.joined(separator: ", ") }
+        set { meanings = newValue.components(separatedBy: ", ") }
+    }
     var folder: Folder
     var reviewCount: Int = 0
     var isReviewed: Bool { reviewCount > 3 }
@@ -26,7 +29,7 @@ class Word {
     ) {
         self.text = text
         self.reading = reading
-        self.meanings = meaning.components(separatedBy: ",")
+        self.meanings = meaning.components(separatedBy: ", ")
         self.folder = folder
     }
 }
