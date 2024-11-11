@@ -112,17 +112,7 @@ struct WordsReviewView: View {
     
     @ViewBuilder private func reviewResultListCell(_ reviewResult: ReviewResult) -> some View {
         HStack {
-            HStack(spacing: 20) {
-                Text(reviewResult.word.text)
-                    .font(.largeTitle.bold())
-                
-                VStack(alignment: .leading, spacing: 20) {
-                    Text(reviewResult.word.reading)
-                    Text(reviewResult.word.meaning)
-                }
-                .font(.title2.bold())
-                .foregroundStyle(.secondary)
-            }
+            SummaryWordCard(reviewResult.word)
             
             Spacer()
             

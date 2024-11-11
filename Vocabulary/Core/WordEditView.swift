@@ -32,6 +32,10 @@ struct WordEditView: View {
     var body: some View {
         ZStack {
             VStack(spacing: 40) {
+                if let word = word {
+                    SummaryWordCard(word)
+                }
+                
                 TextField("원문", text: $originalText)
                     .handwritableTextFieldStyle()
                 
@@ -97,4 +101,8 @@ struct WordEditView: View {
     private func initializeReviewCount() {
         word?.reviewCount = .zero
     }
+}
+
+#Preview {
+    WordEditView(folder: .init(name: "folder"), word: .init(text: "new word", reading: "new word reading", meaning: "new word meaning", in: .init(name: "folder")))
 }
