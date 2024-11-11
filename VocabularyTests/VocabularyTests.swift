@@ -53,5 +53,18 @@ struct VocabularyTests {
         
         #expect(result1 && result2)
     }
+    
+    @Test func 채점결과의_수정이_잘_이루어_지는가() throws {
+        // given
+        let folder = Vocabulary.Folder(name: "new folder")
+        let word = Vocabulary.Word(text: "new word", reading: "new word", meaning: "new word", in: folder)
+        let reviewResult = ReviewResult.build(word: word)
+        
+        // when
+        reviewResult.word.reviewCount += 1
+        
+        // then
+        #expect(word.reviewCount == 1)
+    }
 
 }
