@@ -30,46 +30,44 @@ struct WordEditView: View {
     }
     
     var body: some View {
-        VStack {
-            Spacer()
-            
-            TextField("원문", text: $originalText)
-                .handwritableTextFieldStyle()
-            
-            Spacer()
-            
-            TextField("읽는 방법", text: $reading)
-                .handwritableTextFieldStyle()
-            
-            Spacer()
-            
-            TextField("의미", text: $meaning)
-                .handwritableTextFieldStyle()
-            
-            Spacer()
-            
-            HStack {
-                Button {
-                    initializeReviewCount()
-                } label: {
-                    Text("복습 횟수 초기화")
-                        .font(.headline)
-                }
-                .disabled(word?.isReviewed ?? true)
+        ZStack {
+            VStack(spacing: 40) {
+                TextField("원문", text: $originalText)
+                    .handwritableTextFieldStyle()
                 
+                TextField("읽는 방법", text: $reading)
+                    .handwritableTextFieldStyle()
+                
+                TextField("의미", text: $meaning)
+                    .handwritableTextFieldStyle()
+            }
+            
+            VStack {
                 Spacer()
                 
-                Button {
-                    guard let word  = word else {
-                        createWord()
-                        return
+                HStack {
+                    Button(role: .destructive) {
+                        initializeReviewCount()
+                    } label: {
+                        Text("복습 횟수 초기화")
+                            .font(.headline)
                     }
-                    updateWord(word: word)
-                } label: {
-                    Text("저장")
-                        .font(.headline)
+                    .disabled(word?.isReviewed ?? true)
+                    
+                    Spacer()
+                    
+                    Button {
+                        guard let word  = word else {
+                            createWord()
+                            return
+                        }
+                        updateWord(word: word)
+                    } label: {
+                        Text("저장")
+                            .font(.headline)
+                    }
+                    .disabled(textFieldIsEmpty)
                 }
-                .disabled(textFieldIsEmpty)
             }
         }
         .padding()
