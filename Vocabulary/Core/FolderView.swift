@@ -50,22 +50,6 @@ struct FolderView: View {
                         Label("단어 추가", systemImage: "plus")
                     }
                     
-                    Menu {
-                        Button {
-                            sortWord(option: .alphabetically)
-                        } label: {
-                            Text("사전순 정렬")
-                        }
-                        
-                        Button {
-                            sortWord(option: .leastFrequentlyReviewed)
-                        } label: {
-                            Text("적게 본 단어순 정렬")
-                        }
-                    } label: {
-                        Label("정렬하기", systemImage: "slider.horizontal.3")
-                    }
-                    
                     Button {
                         guard folder.words.isEmpty == false else {
                             isAlertPresented = true
@@ -139,24 +123,6 @@ extension FolderView {
     func evaluateReview() {
         withAnimation(.smooth) {
             isReviewCompleted = true
-        }
-    }
-    
-    enum SortOption {
-        /// 사전순 정렬
-        case alphabetically
-        /// 적게 본 단어순 정렬
-        case leastFrequentlyReviewed
-    }
-    
-    func sortWord(option: SortOption) {
-        withAnimation(.bouncy) {
-            switch option {
-            case .alphabetically:
-                folder.words.sort(by: {$0.text < $1.text})
-            case .leastFrequentlyReviewed:
-                folder.words.sort(by: {$0.reviewCount < $1.reviewCount})
-            }
         }
     }
 }
