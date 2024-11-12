@@ -11,10 +11,9 @@ struct WordsReviewView: View {
     @State private var tabViewSelectedIndex: Int = 0
     @State private var reviewResults: [ReviewResult]
     @State private var reviewAnswerText: String = String()
-    @State private var isReviewCompleted: Bool = false
+    @State private var isReviewCompleted: Bool = true
     
     @Binding var displayMode: DisplayMode
-    
     
     init(
         words: [Word],
@@ -70,7 +69,6 @@ struct WordsReviewView: View {
                         .font(.largeTitle.bold())
                         .multilineTextAlignment(.center)
                 }
-                
             }
         }
         .padding()
@@ -82,10 +80,18 @@ struct WordsReviewView: View {
                     Text("복습 모드 종료")
                 }
                 
-                Button {
-                    evaluateReview()
-                } label: {
-                    Text("채점 및 결과 확인")
+                if isReviewCompleted, reviewResults.isEmpty == false {
+                    Button {
+                        retryReview()
+                    } label: {
+                        Text("틀린 문제 재시험")
+                    }
+                } else {
+                    Button {
+                        evaluateReview()
+                    } label: {
+                        Text("채점 및 결과 확인")
+                    }
                 }
             }
         }
@@ -156,6 +162,16 @@ struct WordsReviewView: View {
         }
     }
     
+    private func retryReview() {
+        let incorrectReviewResults = reviewResults.filter { $0.isCorrect == false }
+        tabViewSelectedIndex = .zero
+        reviewResults = incorrectReviewResults
+        reviewAnswerText.removeAll()
+        withAnimation(.easeInOut) {
+            isReviewCompleted = false
+        }
+    }
+    
     private func submitAnswer(reviewResult: ReviewResult) {
         reviewResult.submitAnswer(reviewAnswerText)
         reviewResult.word.reviewCount += 1
@@ -179,10 +195,12 @@ struct WordsReviewView: View {
 }
 
 #Preview {
-    WordsReviewView(words: [
-        Word(text: "사과", reading: "sagwa", meaning: "과일, 음식", in: Folder(name: "과일")),
-        Word(text: "책", reading: "chaek", meaning: "자료, 정보, 읽을거리", in: Folder(name: "문학")),
-        Word(text: "컴퓨터", reading: "keompyuteo", meaning: "기계, 전자기기", in: Folder(name: "기술")),
-        Word(text: "자동차", reading: "jadongcha", meaning: "교통수단, 이동수단", in: Folder(name: "교통"))
-    ], displayMode: .constant(.inReviewing))
+    NavigationStack {
+        WordsReviewView(words: [
+            Word(text: "사과", reading: "sagwa", meaning: "과일, 음식", in: Folder(name: "과일")),
+            Word(text: "책", reading: "chaek", meaning: "자료, 정보, 읽을거리", in: Folder(name: "문학")),
+            Word(text: "컴퓨터", reading: "keompyuteo", meaning: "기계, 전자기기", in: Folder(name: "기술")),
+            Word(text: "자동차", reading: "jadongcha", meaning: "교통수단, 이동수단", in: Folder(name: "교통"))
+        ], displayMode: .constant(.inReviewing))
+    }
 }
