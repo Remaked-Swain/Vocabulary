@@ -88,7 +88,7 @@ struct WordEditView: View {
     private func createWord() {
         let newWord = Word(text: originalText, reading: reading, meaning: meaning, in: folder)
         folder.words.append(newWord)
-        dismiss()
+        clearTextField()
     }
     
     private func updateWord(word: Word) {
@@ -100,6 +100,12 @@ struct WordEditView: View {
     
     private func initializeReviewCount() {
         word?.reviewCount = .zero
+    }
+    
+    private func clearTextField() {
+        originalText.removeAll()
+        reading.removeAll()
+        meaning.removeAll()
     }
 }
 
