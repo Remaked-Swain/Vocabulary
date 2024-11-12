@@ -11,13 +11,18 @@ struct WordsReviewView: View {
     @State private var tabViewSelectedIndex: Int = 0
     @State private var reviewResults: [ReviewResult]
     @State private var reviewAnswerText: String = String()
+    @State private var isReviewCompleted: Bool = false
     
-    @Binding var isReviewCompleted: Bool
+    @Binding var displayMode: DisplayMode
     
-    init(words: [Word], isReviewCompleted: Binding<Bool>) {
+    
+    init(
+        words: [Word],
+        displayMode: Binding<DisplayMode>
+    ) {
         let reviewResults = words.shuffled().map { ReviewResult.build(word: $0) }
         self._reviewResults = State(initialValue: reviewResults)
-        self._isReviewCompleted = isReviewCompleted
+        self._displayMode = displayMode
     }
     
     var body: some View {
@@ -33,10 +38,12 @@ struct WordsReviewView: View {
                                     .tag(index)
                             }
                         }
-                        .tabViewStyle(.page)
+                        .tabViewStyle(.page(indexDisplayMode: .never))
                         .containerRelativeFrame(.vertical) { length, _ in
                             length / 2
                         }
+                        .disabled(true)
+                        
                         
                         HStack {
                             TextField("원문 또는 의미 작성", text: $reviewAnswerText)
@@ -47,6 +54,14 @@ struct WordsReviewView: View {
                             }
                             .bigButtonStyle()
                             .disabled(reviewAnswerText.isEmpty)
+                            
+                            Button("스킵") {
+                                withAnimation(.easeInOut) {
+                                    tabViewSelectedIndex += 1
+                                }
+                            }
+                            .bigButtonStyle()
+                            .disabled(reviewAnswerText.isEmpty == false)
                         }
                         .safeAreaPadding(.all)
                     }
@@ -55,9 +70,25 @@ struct WordsReviewView: View {
                         .font(.largeTitle.bold())
                         .multilineTextAlignment(.center)
                 }
+                
             }
         }
         .padding()
+        .toolbar {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button {
+                    stopReviewMode()
+                } label: {
+                    Text("복습 모드 종료")
+                }
+                
+                Button {
+                    evaluateReview()
+                } label: {
+                    Text("채점 및 결과 확인")
+                }
+            }
+        }
     }
     
     @ViewBuilder private func reviewCell(_ reviewResult: ReviewResult) -> some View {
@@ -134,4 +165,24 @@ struct WordsReviewView: View {
             tabViewSelectedIndex += 1
         }
     }
+    
+    private func stopReviewMode() {
+        displayMode = .displayingGrid
+        isReviewCompleted = false
+    }
+    
+    private func evaluateReview() {
+        withAnimation(.smooth) {
+            isReviewCompleted = true
+        }
+    }
+}
+
+#Preview {
+    WordsReviewView(words: [
+        Word(text: "사과", reading: "sagwa", meaning: "과일, 음식", in: Folder(name: "과일")),
+        Word(text: "책", reading: "chaek", meaning: "자료, 정보, 읽을거리", in: Folder(name: "문학")),
+        Word(text: "컴퓨터", reading: "keompyuteo", meaning: "기계, 전자기기", in: Folder(name: "기술")),
+        Word(text: "자동차", reading: "jadongcha", meaning: "교통수단, 이동수단", in: Folder(name: "교통"))
+    ], displayMode: .constant(.inReviewing))
 }
