@@ -124,9 +124,22 @@ struct WordsReviewView: View {
     
     @ViewBuilder private func reviewResultsView() -> some View {
         VStack {
-            Text("결과")
+            VStack(spacing: 30) {
+                Text("결과")
+                    .font(.largeTitle.bold())
+                    
+                HStack(spacing: 30) {
+                    let correctReviewResultCount = reviewResults.filter(\.isCorrect).count
+                    let incorrectReviewResultCount = reviewResults.count - correctReviewResultCount
+                    Text("\(correctReviewResultCount)")
+                        .foregroundStyle(.green)
+                    
+                    Text("\(incorrectReviewResultCount)")
+                        .foregroundStyle(.red)
+                }
                 .font(.title)
-                .padding()
+            }
+            .padding()
             
             List {
                 Section {
