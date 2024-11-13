@@ -12,7 +12,8 @@ import SwiftData
 class Word {
     var text: String
     var reading: String
-    var meanings: [String]
+    private(set) var meanings: [String]
+    var explanation: String?
     var meaning: String {
         get { meanings.joined(separator: ", ") }
         set { meanings = newValue.components(separatedBy: ", ") }
@@ -25,11 +26,13 @@ class Word {
         text: String,
         reading: String,
         meaning: String,
+        explanation: String? = nil,
         in folder: Folder
     ) {
         self.text = text
         self.reading = reading
         self.meanings = meaning.components(separatedBy: ", ")
+        self.explanation = explanation
         self.folder = folder
     }
 }

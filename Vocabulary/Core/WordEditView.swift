@@ -16,6 +16,7 @@ struct WordEditView: View {
     @State private var originalText: String = String()
     @State private var reading: String = String()
     @State private var meaning: String = String()
+    @State private var explanation: String = String()
     
     private var textFieldIsEmpty: Bool {
         originalText.isEmpty || reading.isEmpty || meaning.isEmpty
@@ -44,6 +45,9 @@ struct WordEditView: View {
                 
                 TextField("의미", text: $meaning)
                     .handwritableTextFieldStyle()
+                
+                TextField("부가설명", text: $explanation)
+                    .handwritableTextFieldStyle()
             }
             
             VStack {
@@ -56,7 +60,7 @@ struct WordEditView: View {
                         Text("복습 횟수 초기화")
                             .font(.headline)
                     }
-                    .disabled(word?.isReviewed ?? true)
+                    .disabled(word?.isReviewed == false)
                     
                     Spacer()
                     
@@ -86,7 +90,13 @@ struct WordEditView: View {
     }
     
     private func createWord() {
-        let newWord = Word(text: originalText, reading: reading, meaning: meaning, in: folder)
+        let newWord = Word(
+            text: originalText,
+            reading: reading,
+            meaning: meaning,
+            explanation: explanation,
+            in: folder
+        )
         folder.words.append(newWord)
         clearTextField()
     }
@@ -95,6 +105,7 @@ struct WordEditView: View {
         word.text = originalText
         word.reading = reading
         word.meaning = meaning
+        word.explanation = explanation
         dismiss()
     }
     
@@ -106,6 +117,7 @@ struct WordEditView: View {
         originalText.removeAll()
         reading.removeAll()
         meaning.removeAll()
+        explanation.removeAll()
     }
 }
 

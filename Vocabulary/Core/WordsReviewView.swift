@@ -118,6 +118,13 @@ struct WordsReviewView: View {
                 Text(reviewResult.word.meaning)
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
+                
+                if let explanation = reviewResult.word.explanation {
+                    Text(explanation)
+                        .font(.headline.bold())
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                }
             }
         }
         .font(.largeTitle.bold())
