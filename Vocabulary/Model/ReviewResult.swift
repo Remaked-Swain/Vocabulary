@@ -10,8 +10,8 @@ import Foundation
 final class ReviewResult {
     let word: Word
     let showingSide: ShowingSide
-    var submittedAnswer: String = "-"
-    var isCorrect: Bool = false
+    private(set) var submittedAnswer: String?
+    private(set) var isCorrect: Bool = false
     
     private init(word: Word) {
         self.word = word
@@ -19,6 +19,10 @@ final class ReviewResult {
     }
     
     private func evaluateAnswer() {
+        guard let submittedAnswer = submittedAnswer else {
+            return isCorrect = false
+        }
+        
         switch showingSide {
         case .foreground:
             isCorrect = word.meanings.contains(submittedAnswer)
