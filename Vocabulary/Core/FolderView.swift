@@ -42,6 +42,7 @@ struct FolderView: View {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(folder.words) { word in
                     WordCard(word)
+                        .padding()
                 }
             }
         }
