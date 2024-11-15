@@ -15,12 +15,14 @@ struct WordsReviewView: View {
     
     @Binding var displayMode: DisplayMode
     
+    private let words: [Word]
     private var isRetryAllowed: Bool { reviewResults.contains(where: { $0.isCorrect == false })}
     
     init(
         words: [Word],
         displayMode: Binding<DisplayMode>
     ) {
+        self.words = words
         let reviewResults = words.shuffled().map { ReviewResult.build(word: $0) }
         self._reviewResults = State(initialValue: reviewResults)
         self._displayMode = displayMode
@@ -193,7 +195,7 @@ struct WordsReviewView: View {
     
     private func retryReview() {
         tabViewSelectedIndex = .zero
-        self.reviewResults.shuffled().forEach { $0.reset() }
+        self.reviewResults = words.shuffled().map { ReviewResult.build(word: $0) }
         reviewAnswerText.removeAll()
         withAnimation(.easeInOut) {
             isReviewCompleted = false
