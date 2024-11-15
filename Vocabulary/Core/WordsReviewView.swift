@@ -75,24 +75,32 @@ struct WordsReviewView: View {
         }
         .padding()
         .toolbar {
-            ToolbarItemGroup(placement: .topBarTrailing) {
+            ToolbarItem(placement: .topBarLeading) {
                 Button {
                     stopReviewMode()
                 } label: {
-                    Text("복습 모드 종료")
+                    Label("복습 모드 종료", systemImage: "xmark")
                 }
-                
+            }
+            
+            ToolbarItemGroup(placement: .topBarTrailing) {
                 if isReviewCompleted, isRetryAllowed {
+                    Button {
+                        retryReviewWithIncorrectAnswers()
+                    } label: {
+                        Label("틀린 문제 재시험", systemImage: "exclamationmark.arrow.trianglehead.2.clockwise.rotate.90")
+                    }
+                } else if isReviewCompleted {
                     Button {
                         retryReview()
                     } label: {
-                        Text("틀린 문제 재시험")
+                        Label("모든 문제 재시험", systemImage: "arrow.trianglehead.2.clockwise.rotate.90")
                     }
                 } else {
                     Button {
                         evaluateReview()
                     } label: {
-                        Text("채점 및 결과 확인")
+                        Text("채점")
                     }
                     .disabled(isReviewCompleted)
                 }
@@ -186,6 +194,15 @@ struct WordsReviewView: View {
     }
     
     private func retryReview() {
+        tabViewSelectedIndex = .zero
+        self.reviewResults.shuffled().forEach { $0.reset() }
+        reviewAnswerText.removeAll()
+        withAnimation(.easeInOut) {
+            isReviewCompleted = false
+        }
+    }
+    
+    private func retryReviewWithIncorrectAnswers() {
         let incorrectReviewResults = reviewResults.filter { $0.isCorrect == false }
         tabViewSelectedIndex = .zero
         reviewResults = incorrectReviewResults
