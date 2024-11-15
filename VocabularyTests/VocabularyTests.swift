@@ -54,6 +54,25 @@ struct VocabularyTests {
         #expect(result1 && result2)
     }
     
+    @Test func 여러_의미를_가진_단어를_저장할_때_띄어쓰기_위치와_관련없이_저장할_수_있는가() {
+        // given
+        let expectedMeanings: [String] = ["word", "word", "word"]
+        let folder = Vocabulary.Folder(name: "new folder")
+        // - "A, B, C" 형태로 주어진 경우
+        let word1 = Vocabulary.Word(text: "new word", reading: "new word", meaning: "word, word, word", in: folder)
+        // - "A,B,C" 형태로 주어진 경우
+        let word2 = Vocabulary.Word(text: "new word", reading: "new word", meaning: "word,word,word", in: folder)
+        // - "A ,B, C" 형태로 주어진 경우
+        let word3 = Vocabulary.Word(text: "new word", reading: "new word", meaning: "word ,word, word", in: folder)
+        // - "A ,B ,C" 형태로 주어진 경우
+        let word4 = Vocabulary.Word(text: "new word", reading: "new word", meaning: "word ,word ,word", in: folder)
+        // when
+        
+        
+        // then
+        #expect([word1, word2, word3, word4].allSatisfy({ $0.meanings == expectedMeanings }))
+    }
+    
     @Test func 채점결과의_수정이_잘_이루어_지는가() throws {
         // given
         let folder = Vocabulary.Folder(name: "new folder")
@@ -66,5 +85,4 @@ struct VocabularyTests {
         // then
         #expect(word.reviewCount == 1)
     }
-
 }
