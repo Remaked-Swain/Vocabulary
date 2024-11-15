@@ -16,7 +16,7 @@ class Word {
     var explanation: String?
     var meaning: String {
         get { meanings.joined(separator: ", ") }
-        set { meanings = newValue.components(separatedBy: ", ") }
+        set { meanings = processMultipleMeanings(newValue) }
     }
     var folder: Folder
     var reviewCount: Int = 0
@@ -31,8 +31,16 @@ class Word {
     ) {
         self.text = text
         self.reading = reading
-        self.meanings = meaning.components(separatedBy: ", ")
+        self.meanings = []
         self.explanation = explanation
         self.folder = folder
+        self.meaning = meaning
+    }
+    
+    private func processMultipleMeanings(_ input: String) -> [String] {
+        input
+            .split(separator: ",", omittingEmptySubsequences: true) // 쉼표 분리, 빈 요소 제거
+            .map { $0.trimmingCharacters(in: .whitespaces) } // 각 요소 앞뒤 공백 제거
+            .filter { $0.isEmpty == false } // 빈 문자열 제거
     }
 }
