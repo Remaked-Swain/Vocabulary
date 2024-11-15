@@ -66,11 +66,13 @@ struct VocabularyTests {
         let word3 = Vocabulary.Word(text: "new word", reading: "new word", meaning: "word ,word, word", in: folder)
         // - "A ,B ,C" 형태로 주어진 경우
         let word4 = Vocabulary.Word(text: "new word", reading: "new word", meaning: "word ,word ,word", in: folder)
+        // - "A , B , C" 형태로 주어진 경우
+        let word5 = Vocabulary.Word(text: "new word", reading: "new word", meaning: "word , word , word", in: folder)
         // when
         
         
         // then
-        #expect([word1, word2, word3, word4].allSatisfy({ $0.meanings == expectedMeanings }))
+        #expect([word1, word2, word3, word4, word5].allSatisfy({ $0.meanings == expectedMeanings }))
     }
     
     @Test func 채점결과의_수정이_잘_이루어_지는가() throws {
