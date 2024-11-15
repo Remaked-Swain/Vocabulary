@@ -75,15 +75,13 @@ struct WordsReviewView: View {
         }
         .padding()
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
+            ToolbarItemGroup(placement: .topBarTrailing) {
                 Button {
                     stopReviewMode()
                 } label: {
-                    Label("복습 모드 종료", systemImage: "xmark")
+                    Text("복습 모드 종료")
                 }
-            }
-            
-            ToolbarItemGroup(placement: .topBarTrailing) {
+                
                 if isReviewCompleted, isRetryAllowed {
                     Button {
                         retryReviewWithIncorrectAnswers()
