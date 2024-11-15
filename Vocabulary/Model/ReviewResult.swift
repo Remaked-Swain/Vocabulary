@@ -9,7 +9,7 @@ import Foundation
 
 final class ReviewResult {
     let word: Word
-    let showingSide: ShowingSide
+    private(set) var showingSide: ShowingSide
     private(set) var submittedAnswer: String?
     private(set) var isCorrect: Bool = false
     
@@ -42,6 +42,12 @@ final class ReviewResult {
     
     func adjustCorrection(to state: CorrectionState) {
         self.isCorrect = state == .correct ? true : false
+    }
+    
+    func reset() {
+        self.showingSide = ShowingSide.random()
+        self.submittedAnswer = nil
+        self.isCorrect = false
     }
 }
 
