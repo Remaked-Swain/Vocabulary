@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Word {
+final class Word {
     var text: String
     var reading: String
     private(set) var meanings: [String]
