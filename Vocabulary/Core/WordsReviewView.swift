@@ -126,13 +126,13 @@ struct WordsReviewView: View {
                 Text(reviewResult.word.meaning)
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
-                
-                if let explanation = reviewResult.word.explanation {
-                    Text(explanation)
-                        .font(.headline.bold())
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                }
+            }
+            
+            if let explanation = reviewResult.word.explanation {
+                Text(explanation)
+                    .font(.headline.bold())
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
             }
         }
         .font(.largeTitle.bold())
@@ -237,7 +237,7 @@ struct WordsReviewView: View {
 #Preview {
     NavigationStack {
         WordsReviewView(words: [
-            Word(text: "사과", reading: "sagwa", meaning: "과일, 음식", in: Folder(name: "과일")),
+            Word(text: "사과", reading: "sagwa", meaning: "과일, 음식", explanation: "먹는 것", in: Folder(name: "과일")),
 //            Word(text: "책", reading: "chaek", meaning: "자료, 정보, 읽을거리", in: Folder(name: "문학")),
 //            Word(text: "컴퓨터", reading: "keompyuteo", meaning: "기계, 전자기기", in: Folder(name: "기술")),
 //            Word(text: "자동차", reading: "jadongcha", meaning: "교통수단, 이동수단", in: Folder(name: "교통"))
