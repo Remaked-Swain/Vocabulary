@@ -78,28 +78,36 @@ struct WordsReviewView: View {
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 Button {
-                    stopReviewMode()
+                    stopReviewing()
                 } label: {
-                    Text("복습 모드 종료")
+                    Label(systemIcon: .stopReviewing)
                 }
                 
-                if isReviewCompleted, isRetryAllowed {
-                    Button {
-                        retryReviewWithIncorrectAnswers()
-                    } label: {
-                        Label("틀린 문제 재시험", systemImage: "exclamationmark.arrow.trianglehead.2.clockwise.rotate.90")
-                    }
-                } else if isReviewCompleted {
-                    Button {
-                        retryReview()
-                    } label: {
-                        Label("모든 문제 재시험", systemImage: "arrow.trianglehead.2.clockwise.rotate.90")
+                if isReviewCompleted {
+                    Menu("재시험") {
+                        Button {
+                            retryReviewWithIncorrectAnswers()
+                        } label: {
+                            Label(systemIcon: .retryReviewWithIncorrectAnswers)
+                        }
+                        
+                        Button {
+                            retryReview()
+                        } label: {
+                            Label(systemIcon: .retryReview)
+                        }
+                        
+                        Button {
+                            flipAndRetryReview()
+                        } label: {
+                            Label(systemIcon: .flipAndRetryReview)
+                        }
                     }
                 } else {
                     Button {
                         evaluateReview()
                     } label: {
-                        Text("채점")
+                        Label(systemIcon: .evaluateReview)
                     }
                     .disabled(isReviewCompleted)
                 }
