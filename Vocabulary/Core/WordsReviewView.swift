@@ -201,6 +201,15 @@ struct WordsReviewView: View {
         }
     }
     
+    private func flipAndRetryReview() {
+        tabViewSelectedIndex = .zero
+        self.reviewResults = reviewResults.map { $0.flipShowingSide() }
+        reviewAnswerText.removeAll()
+        withAnimation(.easeInOut) {
+            isReviewCompleted = false
+        }
+    }
+    
     private func retryReviewWithIncorrectAnswers() {
         let incorrectReviewResults = reviewResults.filter { $0.isCorrect == false }
         tabViewSelectedIndex = .zero
