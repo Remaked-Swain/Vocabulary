@@ -22,3 +22,14 @@ extension ShowingSide: CaseIterable {
         return randomElement
     }
 }
+
+extension ShowingSide {
+    func flip() -> ShowingSide {
+        switch self {
+        case .foreground:
+            return .background
+        case .background:
+            return .foreground
+        }
+    }
+}
