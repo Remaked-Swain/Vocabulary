@@ -221,7 +221,7 @@ struct WordsReviewView: View {
         }
     }
     
-    private func stopReviewMode() {
+    private func stopReviewing() {
         displayMode = .displayingGrid
         isReviewCompleted = false
     }
