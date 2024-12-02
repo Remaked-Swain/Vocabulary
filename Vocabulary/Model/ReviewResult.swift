@@ -49,6 +49,13 @@ final class ReviewResult {
         self.submittedAnswer = nil
         self.isCorrect = false
     }
+    
+    func flipShowingSide() -> ReviewResult {
+        self.showingSide = showingSide.flip()
+        self.submittedAnswer = nil
+        self.isCorrect = false
+        return self
+    }
 }
 
 // MARK: Nested Types
