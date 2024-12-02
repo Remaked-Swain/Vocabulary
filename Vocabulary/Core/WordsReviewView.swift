@@ -16,7 +16,6 @@ struct WordsReviewView: View {
     @Binding var displayMode: DisplayMode
     
     private let words: [Word]
-    private var isRetryAllowed: Bool { reviewResults.contains(where: { $0.isCorrect == false })}
     
     init(
         words: [Word],
