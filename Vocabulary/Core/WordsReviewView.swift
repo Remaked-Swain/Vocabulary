@@ -53,6 +53,10 @@ struct WordsReviewView: View {
                             
                             Button("제출") {
                                 submitAnswer(reviewResult: reviewResults[tabViewSelectedIndex])
+                                
+                                withAnimation(.easeInOut) {
+                                    tabViewSelectedIndex += 1
+                                }
                             }
                             .bigButtonStyle()
                             .disabled(reviewAnswerText.isEmpty)
@@ -232,10 +236,6 @@ struct WordsReviewView: View {
         reviewResult.submitAnswer(reviewAnswerText)
         reviewResult.word.reviewCount += 1
         reviewAnswerText.removeAll()
-        
-        withAnimation(.easeInOut) {
-            tabViewSelectedIndex += 1
-        }
     }
     
     private func stopReviewing() {
