@@ -35,6 +35,27 @@ struct FolderView: View {
         } message: {
             Text("단어를 추가해야 합니다.")
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                if displayMode == .displayingGrid {
+                    NavigationLink {
+                        WordEditView(folder: folder, word: nil)
+                    } label: {
+                        Label("단어 추가", systemImage: "plus")
+                    }
+                    
+                    Button {
+                        guard folder.words.isEmpty == false else {
+                            isAlertPresented = true
+                            return
+                        }
+                        startReviewMode()
+                    } label: {
+                        Label("복습하기", systemImage: "play.fill")
+                    }
+                }
+            }
+        }
     }
     
     private var displayingGrid: some View {
@@ -45,26 +66,7 @@ struct FolderView: View {
                         .padding()
                 }
             }
-        }
-        .padding(.horizontal)
-        .toolbar {
-            ToolbarItemGroup(placement: .topBarTrailing) {
-                NavigationLink {
-                    WordEditView(folder: folder, word: nil)
-                } label: {
-                    Label("단어 추가", systemImage: "plus")
-                }
-                
-                Button {
-                    guard folder.words.isEmpty == false else {
-                        isAlertPresented = true
-                        return
-                    }
-                    startReviewMode()
-                } label: {
-                    Label("복습하기", systemImage: "play.fill")
-                }
-            }
+            .padding(.horizontal)
         }
     }
     
@@ -75,6 +77,7 @@ struct FolderView: View {
         case .displayingGrid:
             if folder.words.isEmpty {
                 ContentUnavailableView("단어장이 비어있어요!", systemImage: "questionmark.folder", description: Text("단어를 추가해주세요."))
+                    .scrollDisabled(folder.words.isEmpty)
             } else {
                 displayingGrid
             }
