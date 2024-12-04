@@ -73,7 +73,11 @@ struct FolderView: View {
         case .inReviewing:
             WordsReviewView(words: folder.words, displayMode: $displayMode)
         case .displayingGrid:
-            displayingGrid
+            if folder.words.isEmpty {
+                ContentUnavailableView("단어장이 비어있어요!", systemImage: "questionmark.folder", description: Text("단어를 추가해주세요."))
+            } else {
+                displayingGrid
+            }
         }
     }
     
