@@ -61,7 +61,7 @@ struct WordsReviewView: View {
                             .bigButtonStyle()
                             .disabled(reviewAnswerText.isEmpty)
                             
-                            Button("스킵") {
+                            Button("넘기기") {
                                 withAnimation(.easeInOut) {
                                     tabViewSelectedIndex += 1
                                 }

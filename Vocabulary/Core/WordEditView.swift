@@ -40,10 +40,10 @@ struct WordEditView: View {
                 TextField("원문", text: $originalText)
                     .handwritableTextFieldStyle()
                 
-                TextField("읽는 방법", text: $reading)
+                TextField("발음", text: $reading)
                     .handwritableTextFieldStyle()
                 
-                TextField("의미", text: $meaning)
+                TextField("의미 (쉼표로 구분해 작성할 수 있어요.)", text: $meaning)
                     .handwritableTextFieldStyle()
                 
                 TextField("부가설명", text: $explanation)
@@ -122,5 +122,11 @@ struct WordEditView: View {
 }
 
 #Preview {
-    WordEditView(folder: .init(name: "folder"), word: .init(text: "new word", reading: "new word reading", meaning: "new word meaning", in: .init(name: "folder")))
+    Group {
+        WordEditView(folder: .init(name: "folder"), word: .init(text: "new word", reading: "new word reading", meaning: "new word meaning", in: .init(name: "folder")))
+            .environment(\.locale, .init(identifier: "en"))
+        
+        WordEditView(folder: .init(name: "folder"), word: .init(text: "new word", reading: "new word reading", meaning: "new word meaning", in: .init(name: "folder")))
+            .environment(\.locale, .init(identifier: "ko"))
+    }
 }
