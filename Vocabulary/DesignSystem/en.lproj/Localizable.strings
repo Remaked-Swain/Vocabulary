@@ -35,8 +35,8 @@
 
 /// WordsReviewView
 "원문 또는 의미 작성" = "Write the original text or meaning";
-"제출" = "Submit answer";
-"넘기기" = "Skip to next";
+"제출" = "Submit";
+"넘기기" = "Skip";
 "모든 문제에 대한 답안을 제출하였습니다.\n채점 및 결과를 확인해주세요." = "You submitted answers to all the questions.\nPlease check the scoring results.";
 "재시험" = "Retake";
 "결과" = "Result";
