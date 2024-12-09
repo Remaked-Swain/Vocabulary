@@ -1,0 +1,11 @@
+/* 
+  InpoPlist.strings
+  Vocabulary
+
+  Created by Swain Yun on 12/9/24.
+  
+*/
+
+/// Common
+"CFBundleDisplayName" = "Will memorize";
+"CFBundleName" = "Will memorize";

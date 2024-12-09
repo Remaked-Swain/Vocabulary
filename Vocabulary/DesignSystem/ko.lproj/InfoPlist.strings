@@ -1,0 +1,11 @@
+/* 
+  InpoPlist.strings
+  Vocabulary
+
+  Created by Swain Yun on 12/9/24.
+  
+*/
+
+/// Common
+"CFBundleDisplayName" = "외워지리라";
+"CFBundleName" = "외워지리라";

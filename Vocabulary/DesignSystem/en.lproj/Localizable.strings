@@ -1,7 +1,3 @@
-/// Common
-"CFBundleDisplayName" = "Will memorize";
-"CFBundleName" = "Will memorize";
-
 /// FolderView
 "단어장이 비어있어요!" = "The vocabulary is empty!";
 "확인" = "Okay";
