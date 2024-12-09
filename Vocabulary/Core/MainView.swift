@@ -10,7 +10,7 @@ import SwiftData
 
 struct MainView: View {
     private struct Namespace {
-        static let defaultFolderName: String = "새 폴더"
+        static let defaultFolderName: String = String(localized: "새 폴더")
     }
     
     @Environment(\.modelContext) private var modelContext
@@ -77,7 +77,7 @@ struct MainView: View {
     
     private func createFolder() {
         withAnimation {
-            let newFolder = Folder(name: newFolderName.isEmpty ? "새 폴더" : newFolderName)
+            let newFolder = Folder(name: newFolderName.isEmpty ? Namespace.defaultFolderName : newFolderName)
             modelContext.insert(newFolder)
         }
     }
