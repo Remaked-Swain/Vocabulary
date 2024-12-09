@@ -17,15 +17,15 @@ enum SystemIcon: String {
     var title: String {
         switch self {
         case .stopReviewing:
-            "종료"
+            String(localized: "종료")
         case .retryReviewWithIncorrectAnswers:
-            "틀린 문제만"
+            String(localized: "틀린 문제만")
         case .retryReview:
-            "모든 문제 섞어서"
+            String(localized: "모든 문제 섞어서")
         case .flipAndRetryReview:
-            "반대로 뒤집어서"
+            String(localized: "반대로 뒤집어서")
         case .evaluateReview:
-            "채점"
+            String(localized: "채점")
         }
     }
     
