@@ -1,0 +1,47 @@
+
+/// FolderView
+"단어장이 비어있어요!" = "The vocabulary is empty!";
+"확인" = "Okay";
+"단어를 추가해야 합니다." = "You must add a word.";
+"단어 추가" = "Add words";
+"복습하기" = "Reviewing";
+"단어를 추가해주세요." = "Please add a word.";
+
+/// MainView
+"새 폴더" = "New Folder";
+"단어 개수: %lld" = "Number of words: %lld";
+"단어장" = "Vocabulary";
+"새로운 폴더 만들기" = "Create a new folder";
+"새로운 폴더 이름" = "New folder name";
+"취소" = "Cancel";
+"새로운 폴더를 생성합니다." = "Create a new folder.";
+
+/// WordCard
+"삭제" = "Delete";
+"수정" = "Modify";
+
+/// WordEditView
+"원문" = "The original text";
+"발음" = "Pronunciation";
+"의미" = "Meaning";
+"의미 (쉼표로 구분해 작성할 수 있어요.)" = "Meaning (It can be written separately by commas.)";
+"부가설명" = "Additional explanation";
+"복습 횟수 초기화" = "Initialize the number of reviews";
+"저장" = "Save";
+
+/// WordsReviewView
+"원문 또는 의미 작성" = "Write the original text or meaning";
+"제출" = "Submit answer";
+"넘기기" = "Skip to next";
+"모든 문제에 대한 답안을 제출하였습니다.\n채점 및 결과를 확인해주세요." = "You submitted answers to all the questions.\nPlease check the scoring results.";
+"재시험" = "Retake";
+"결과" = "Result";
+"문제" = "Question";
+"제출한 답" = "Submitted answer";
+
+/// SystemIcon
+"종료" = "Exit";
+"틀린 문제만" = "Only the wrong questions";
+"모든 문제 섞어서" = "Randomly sort, all the questions";
+"반대로 뒤집어서" = "Turn it upside down";
+"채점" = "Scoring";
