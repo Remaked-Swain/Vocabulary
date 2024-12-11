@@ -32,49 +32,50 @@ struct WordsReviewView: View {
             if isReviewCompleted {
                 reviewResultsView()
             } else {
-                if tabViewSelectedIndex < reviewResults.count {
-                    VStack {
-                        TabView(selection: $tabViewSelectedIndex) {
-                            ForEach(0..<reviewResults.count, id: \.self) { index in
-                                reviewCell(reviewResults[index])
-                                    .tag(index)
-                            }
+                VStack {
+                    TabView(selection: $tabViewSelectedIndex) {
+                        ForEach(0..<reviewResults.count, id: \.self) { index in
+                            reviewCell(reviewResults[index])
+                                .tag(index)
                         }
-                        .tabViewStyle(.page(indexDisplayMode: .never))
-                        .containerRelativeFrame(.vertical) { length, _ in
-                            length / 2
-                        }
-                        .disabled(true)
-                        
-                        
-                        HStack {
-                            TextField("원문 또는 의미 작성", text: $reviewAnswerText)
-                                .handwritableTextFieldStyle()
-                            
-                            Button("제출") {
-                                submitAnswer(reviewResult: reviewResults[tabViewSelectedIndex])
-                                
-                                withAnimation(.easeInOut) {
-                                    tabViewSelectedIndex += 1
-                                }
-                            }
-                            .bigButtonStyle()
-                            .disabled(reviewAnswerText.isEmpty)
-                            
-                            Button("넘기기") {
-                                withAnimation(.easeInOut) {
-                                    tabViewSelectedIndex += 1
-                                }
-                            }
-                            .bigButtonStyle()
-                            .disabled(reviewAnswerText.isEmpty == false)
-                        }
-                        .safeAreaPadding(.all)
                     }
-                } else {
-                    Text("모든 문제에 대한 답안을 제출하였습니다.\n채점 및 결과를 확인해주세요.")
-                        .font(.largeTitle.bold())
-                        .multilineTextAlignment(.center)
+                    .tabViewStyle(.page(indexDisplayMode: .never))
+                    .containerRelativeFrame(.vertical) { length, _ in
+                        length / 2
+                    }
+                    .disabled(true)
+                    
+                    
+                    HStack {
+                        TextField("원문 또는 의미 작성", text: $reviewAnswerText)
+                            .handwritableTextFieldStyle()
+                        
+                        Button("제출") {
+                            submitAnswer(reviewResult: reviewResults[tabViewSelectedIndex])
+                            
+                            guard tabViewSelectedIndex < reviewResults.count else {
+                                return isReviewCompleted = true
+                            }
+                            withAnimation(.easeInOut) {
+                                tabViewSelectedIndex += 1
+                            }
+                        }
+                        .bigButtonStyle()
+                        .disabled(reviewAnswerText.isEmpty)
+                        
+                        Button("넘기기") {
+                            guard tabViewSelectedIndex < reviewResults.count else {
+                                return isReviewCompleted = true
+                            }
+                            
+                            withAnimation(.easeInOut) {
+                                tabViewSelectedIndex += 1
+                            }
+                        }
+                        .bigButtonStyle()
+                        .disabled(reviewAnswerText.isEmpty == false)
+                    }
+                    .safeAreaPadding(.all)
                 }
             }
         }
