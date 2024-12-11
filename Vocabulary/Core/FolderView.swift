@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FolderView: View {
+    @Environment(\.userInterfaceIdiom) var idiom
+    
     private let folder: Folder
     
     private let columns = [GridItem](repeating: .init(.flexible(), spacing: 20), count: 3)
@@ -58,18 +60,6 @@ struct FolderView: View {
         }
     }
     
-    private var displayingGrid: some View {
-        ScrollView(.vertical) {
-            LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(folder.words) { word in
-                    WordCard(word)
-                        .padding()
-                }
-            }
-            .padding(.horizontal)
-        }
-    }
-    
     @ViewBuilder private func content(_ mode: DisplayMode) -> some View {
         switch mode {
         case .inReviewing:
@@ -79,8 +69,31 @@ struct FolderView: View {
                 ContentUnavailableView("단어장이 비어있어요!", systemImage: "questionmark.folder", description: Text("단어를 추가해주세요."))
                     .scrollDisabled(folder.words.isEmpty)
             } else {
-                displayingGrid
+                wordsView(idiom)
             }
+        }
+    }
+    
+    @ViewBuilder func wordsView(_ idiom: UIUserInterfaceIdiom) -> some View {
+        if idiom == .pad {
+            ScrollView(.vertical) {
+                LazyVGrid(columns: columns, spacing: 20) {
+                    ForEach(folder.words) { word in
+                        WordCard(word)
+                            .padding()
+                    }
+                }
+                .padding(.horizontal)
+            }
+        } else {
+            List {
+                ForEach(folder.words) { word in
+                    WordCard(word)
+                        .padding(.vertical, 10)
+                        .listRowSeparator(.hidden)
+                }
+            }
+            .listStyle(.plain)
         }
     }
     
@@ -91,9 +104,19 @@ struct FolderView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        FolderView(.init(name: "새 폴더"))
-            .modelContainer(for: [Word.self, Folder.self], inMemory: true)
+struct FolderView_Preview: PreviewProvider {
+    private static var folder: Folder = {
+        let folder = Folder(name: "새 폴더")
+        folder.words = [
+            Word(text: "1", reading: "2", meaning: "3", in: folder),
+            Word(text: "1", reading: "2", meaning: "3", in: folder),
+            Word(text: "1", reading: "2", meaning: "3", in: folder),
+            Word(text: "1", reading: "2", meaning: "3", in: folder),
+        ]
+        return folder
+    }()
+    
+    static var previews: some View {
+        FolderView(folder)
     }
 }
