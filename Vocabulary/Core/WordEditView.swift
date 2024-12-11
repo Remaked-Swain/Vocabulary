@@ -31,28 +31,40 @@ struct WordEditView: View {
     }
     
     var body: some View {
-        ZStack {
-            VStack(spacing: 40) {
-                if let word = word {
-                    SummaryWordCard(word)
-                }
-                
-                TextField("원문", text: $originalText)
-                    .handwritableTextFieldStyle()
-                
-                TextField("발음", text: $reading)
-                    .handwritableTextFieldStyle()
-                
-                TextField("의미 (쉼표로 구분해 작성할 수 있어요.)", text: $meaning)
-                    .handwritableTextFieldStyle()
-                
-                TextField("부가설명", text: $explanation)
-                    .handwritableTextFieldStyle()
+        List {
+            if let word = word {
+                SummaryWordCard(word)
+                    .listRowSeparator(.hidden)
             }
             
-            VStack {
-                Spacer()
-                
+            TextField("원문", text: $originalText)
+                .handwritableTextFieldStyle()
+                .listRowSeparator(.hidden)
+            
+            TextField("발음", text: $reading)
+                .handwritableTextFieldStyle()
+                .listRowSeparator(.hidden)
+            
+            TextField("의미 (쉼표로 구분해 작성할 수 있어요.)", text: $meaning)
+                .handwritableTextFieldStyle()
+                .listRowSeparator(.hidden)
+            
+            TextField("부가설명", text: $explanation)
+                .handwritableTextFieldStyle()
+                .listRowSeparator(.hidden)
+        }
+        .listStyle(.plain)
+        .scrollIndicators(.hidden)
+        .safeAreaPadding()
+        .onAppear {
+            if let word = word {
+                originalText = word.text
+                reading = word.reading
+                meaning = word.meaning
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
                 HStack {
                     Button(role: .destructive) {
                         initializeReviewCount()
@@ -76,15 +88,6 @@ struct WordEditView: View {
                     }
                     .disabled(textFieldIsEmpty)
                 }
-            }
-        }
-        .padding()
-        .safeAreaPadding()
-        .onAppear {
-            if let word = word {
-                originalText = word.text
-                reading = word.reading
-                meaning = word.meaning
             }
         }
     }
@@ -126,7 +129,7 @@ struct WordEditView: View {
         WordEditView(folder: .init(name: "folder"), word: .init(text: "new word", reading: "new word reading", meaning: "new word meaning", in: .init(name: "folder")))
             .environment(\.locale, .init(identifier: "en"))
         
-        WordEditView(folder: .init(name: "folder"), word: .init(text: "new word", reading: "new word reading", meaning: "new word meaning", in: .init(name: "folder")))
-            .environment(\.locale, .init(identifier: "ko"))
+//        WordEditView(folder: .init(name: "folder"), word: .init(text: "new word", reading: "new word reading", meaning: "new word meaning", in: .init(name: "folder")))
+//            .environment(\.locale, .init(identifier: "ko"))
     }
 }
