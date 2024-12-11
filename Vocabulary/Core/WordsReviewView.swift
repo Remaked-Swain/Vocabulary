@@ -125,18 +125,22 @@ struct WordsReviewView: View {
                 Text(reviewResult.word.text)
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
+                    .lineLimit(Constants.defaultLineLimit)
                 
                 Text(reviewResult.word.reading)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
+                    .lineLimit(Constants.defaultLineLimit)
             } else {
                 Text(reviewResult.word.reading)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
+                    .lineLimit(Constants.defaultLineLimit)
                 
                 Text(reviewResult.word.meaning)
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
+                    .lineLimit(Constants.defaultLineLimit)
             }
             
             if let explanation = reviewResult.word.explanation {

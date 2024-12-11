@@ -24,20 +24,20 @@ struct WordCard: View {
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
-                    .lineLimit(4)
+                    .lineLimit(Constants.defaultLineLimit)
                 
                 Text(word.reading)
                     .font(.title3)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
-                    .lineLimit(4)
+                    .lineLimit(Constants.defaultLineLimit)
             } else {
                 Text(word.meaning)
                     .font(.title3)
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
-                    .lineLimit(4)
+                    .lineLimit(Constants.defaultLineLimit)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
