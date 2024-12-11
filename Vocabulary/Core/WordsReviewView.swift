@@ -47,8 +47,7 @@ struct WordsReviewView: View {
                     
                     
                     HStack {
-                        TextField("원문 또는 의미 작성", text: $reviewAnswerText)
-                            .handwritableTextFieldStyle()
+                        textField()
                         
                         Button("제출") {
                             submitAnswer(reviewResult: reviewResults[tabViewSelectedIndex])
@@ -117,6 +116,19 @@ struct WordsReviewView: View {
                     .disabled(isReviewCompleted)
                 }
             }
+        }
+    }
+    
+    @ViewBuilder private func textField() -> some View {
+        let reviewResult = reviewResults[tabViewSelectedIndex]
+        
+        switch reviewResult.showingSide {
+        case .foreground:
+            TextField("의미 작성", text: $reviewAnswerText)
+                .handwritableTextFieldStyle()
+        case .background:
+            TextField("원문 작성", text: $reviewAnswerText)
+                .handwritableTextFieldStyle()
         }
     }
     
@@ -259,9 +271,9 @@ struct WordsReviewView: View {
     NavigationStack {
         WordsReviewView(words: [
             Word(text: "사과", reading: "sagwa", meaning: "과일, 음식", explanation: "먹는 것", in: Folder(name: "과일")),
-//            Word(text: "책", reading: "chaek", meaning: "자료, 정보, 읽을거리", in: Folder(name: "문학")),
-//            Word(text: "컴퓨터", reading: "keompyuteo", meaning: "기계, 전자기기", in: Folder(name: "기술")),
-//            Word(text: "자동차", reading: "jadongcha", meaning: "교통수단, 이동수단", in: Folder(name: "교통"))
+            Word(text: "책", reading: "chaek", meaning: "자료, 정보, 읽을거리", in: Folder(name: "문학")),
+            Word(text: "컴퓨터", reading: "keompyuteo", meaning: "기계, 전자기기", in: Folder(name: "기술")),
+            Word(text: "자동차", reading: "jadongcha", meaning: "교통수단, 이동수단", in: Folder(name: "교통"))
         ], displayMode: .constant(.inReviewing))
     }
 }
