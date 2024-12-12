@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct BigButtonStyle: ButtonStyle {
+    private let idiom: UIUserInterfaceIdiom
+    private let background: Color
+    
+    init(idiom: UIUserInterfaceIdiom, background: Color) {
+        self.idiom = idiom
+        self.background = background
+    }
+    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
-            .font(.title.bold())
-            .background(configuration.isPressed ? .gray.opacity(0.3) : .accentColor)
+            .font(idiom == .pad ? .title : .headline)
+            .bold()
+            .background(configuration.isPressed ? .gray.opacity(0.3) : background)
             .foregroundStyle(.white)
             .clipShape(.rect(cornerRadius: 14))
             .scaleEffect(configuration.isPressed ? 0.9 : 1)
@@ -21,7 +30,7 @@ struct BigButtonStyle: ButtonStyle {
 }
 
 extension View {
-    func bigButtonStyle() -> some View {
-        self.buttonStyle(BigButtonStyle())
+    func bigButtonStyle(_ background: Color = .accentColor, _ idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom) -> some View {
+        self.buttonStyle(BigButtonStyle(idiom: idiom, background: background))
     }
 }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SummaryWordCard: View {
+    @Environment(\.userInterfaceIdiom) private var idiom
+    
     private let word: Word
     
     init(_ word: Word) {
@@ -17,13 +19,15 @@ struct SummaryWordCard: View {
     var body: some View {
         HStack(spacing: 20) {
             Text(word.text)
-                .font(.largeTitle.bold())
+                .font(idiom == .pad ? .largeTitle : .headline)
+                .bold()
             
             VStack(alignment: .leading, spacing: 20) {
                 Text(word.reading)
                 Text(word.meaning)
             }
-            .font(.title2.bold())
+            .font(idiom == .pad ? .title2 : .subheadline)
+            .bold()
             .foregroundStyle(.secondary)
         }
     }

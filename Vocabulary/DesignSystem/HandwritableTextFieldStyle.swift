@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct HandwritableTextFieldStyle: ViewModifier {
+    private let idiom: UIUserInterfaceIdiom
+    
+    init(idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom) {
+        self.idiom = idiom
+    }
+    
     func body(content: Content) -> some View {
         content
             .padding()
-            .font(.title.bold())
+            .font(idiom == .pad ? .title : .headline)
+            .bold()
             .frame(maxWidth: .infinity)
             .background(.thinMaterial)
             .clipShape(.rect(cornerRadius: 14))

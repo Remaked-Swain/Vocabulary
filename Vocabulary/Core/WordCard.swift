@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct WordCard: View {
-    private let word: Word
-    
+    @Environment(\.userInterfaceIdiom) private var idiom
     @State private var showingSide: ShowingSide = .foreground
+    
+    private let word: Word
     
     init(_ word: Word) {
         self.word = word
@@ -20,27 +21,28 @@ struct WordCard: View {
         VStack(spacing: 10) {
             if showingSide == .foreground {
                 Text(word.text)
-                    .font(.title2)
+                    .font(idiom == .pad ? .title2 : .headline)
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
                     .lineLimit(Constants.defaultLineLimit)
                 
                 Text(word.reading)
+                    .font(idiom == .pad ? .title3 : .subheadline)
                     .font(.title3)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                     .lineLimit(Constants.defaultLineLimit)
             } else {
                 Text(word.meaning)
-                    .font(.title3)
+                    .font(idiom == .pad ? .title3 : .headline)
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
                     .lineLimit(Constants.defaultLineLimit)
                 
                 Text(word.explanation ?? String())
-                    .font(.title3)
+                    .font(idiom == .pad ? .title3 : .subheadline)
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
