@@ -85,6 +85,7 @@ struct FolderView: View {
                 }
                 .padding(.horizontal)
             }
+            .scrollIndicators(.hidden)
         } else {
             List {
                 ForEach(folder.words) { word in
@@ -94,6 +95,7 @@ struct FolderView: View {
                 }
             }
             .listStyle(.plain)
+            .scrollIndicators(.hidden)
         }
     }
     

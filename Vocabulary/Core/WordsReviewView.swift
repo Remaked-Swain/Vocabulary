@@ -82,6 +82,7 @@ struct WordsReviewView: View {
         }
         .padding()
         .navigationBarBackButtonHidden()
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 Button {
@@ -208,6 +209,7 @@ struct WordsReviewView: View {
                 }
             }
             .listStyle(.plain)
+            .scrollIndicators(.hidden)
         }
     }
     

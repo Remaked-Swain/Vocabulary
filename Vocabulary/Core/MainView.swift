@@ -37,6 +37,7 @@ struct MainView: View {
                 }
                 .onDelete(perform: deleteFolder)
             }
+            .scrollIndicators(.hidden)
             .navigationTitle("외워지리라")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
