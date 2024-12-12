@@ -74,9 +74,9 @@ struct WordsReviewView: View {
                                 tabViewSelectedIndex += 1
                             }
                         }
-                        .bigButtonStyle()
+                        .bigButtonStyle(.gray)
                     }
-                    .safeAreaPadding(.all)
+                    .safeAreaPadding(.bottom)
                 }
             }
         }

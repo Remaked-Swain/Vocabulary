@@ -33,8 +33,12 @@ struct WordEditView: View {
     var body: some View {
         List {
             if let word = word {
-                SummaryWordCard(word)
-                    .listRowSeparator(.hidden)
+                HStack {
+                    SummaryWordCard(word)
+                        .padding()
+                }
+                .containerRelativeFrame(.horizontal, alignment: .center)
+                .listRowSeparator(.hidden)
             }
             
             TextField("원문", text: $originalText)
@@ -67,13 +71,14 @@ struct WordEditView: View {
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
                 HStack {
-                    Button(role: .destructive) {
-                        initializeReviewCount()
-                    } label: {
-                        Text("복습 횟수 초기화")
-                            .font(.headline)
-                    }
-                    .disabled(word?.isReviewed == false)
+                    // MARK: 추후 기능 추가 예정 WIP
+//                    Button(role: .destructive) {
+//                        initializeReviewCount()
+//                    } label: {
+//                        Text("복습 횟수 초기화")
+//                            .font(.headline)
+//                    }
+//                    .disabled(word?.isReviewed == false)
                     
                     Spacer()
                     
