@@ -53,11 +53,11 @@ struct WordsReviewView: View {
                         }
                         
                         Button("제출") {
+                            submitAnswer(reviewResult: reviewResults[tabViewSelectedIndex])
+                            
                             guard tabViewSelectedIndex + 1 < reviewResults.count else {
                                 return isReviewCompleted = true
                             }
-                            
-                            submitAnswer(reviewResult: reviewResults[tabViewSelectedIndex])
                             
                             withAnimation(.easeInOut) {
                                 tabViewSelectedIndex += 1
