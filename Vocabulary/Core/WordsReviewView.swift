@@ -45,25 +45,26 @@ struct WordsReviewView: View {
                     }
                     .disabled(true)
                     
-                    
                     HStack {
-                        textField()
+                        if tabViewSelectedIndex < reviewResults.count {
+                            textField()
+                        }
                         
                         Button("제출") {
+                            guard tabViewSelectedIndex + 1 < reviewResults.count else {
+                                return isReviewCompleted = true
+                            }
+                            
                             submitAnswer(reviewResult: reviewResults[tabViewSelectedIndex])
                             
-                            guard tabViewSelectedIndex < reviewResults.count else {
-                                return isReviewCompleted = true
-                            }
                             withAnimation(.easeInOut) {
                                 tabViewSelectedIndex += 1
                             }
                         }
                         .bigButtonStyle()
-                        .disabled(reviewAnswerText.isEmpty)
                         
                         Button("넘기기") {
-                            guard tabViewSelectedIndex < reviewResults.count else {
+                            guard tabViewSelectedIndex + 1 < reviewResults.count else {
                                 return isReviewCompleted = true
                             }
                             
@@ -72,7 +73,6 @@ struct WordsReviewView: View {
                             }
                         }
                         .bigButtonStyle()
-                        .disabled(reviewAnswerText.isEmpty == false)
                     }
                     .safeAreaPadding(.all)
                 }
