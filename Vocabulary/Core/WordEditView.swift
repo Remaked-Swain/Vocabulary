@@ -61,6 +61,7 @@ struct WordEditView: View {
                 originalText = word.text
                 reading = word.reading
                 meaning = word.meaning
+                explanation = word.explanation ?? String()
             }
         }
         .toolbar {
