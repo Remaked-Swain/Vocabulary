@@ -59,6 +59,7 @@ struct WordEditView: View {
         }
         .listStyle(.plain)
         .scrollIndicators(.hidden)
+        .scrollDismissesKeyboard(.automatic)
         .safeAreaPadding()
         .onAppear {
             if let word = word {
