@@ -38,6 +38,13 @@ struct WordCard: View {
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
                     .lineLimit(Constants.defaultLineLimit)
+                
+                Text(word.explanation ?? String())
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.primary)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(Constants.defaultLineLimit)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
