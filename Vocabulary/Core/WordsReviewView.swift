@@ -15,6 +15,8 @@ struct WordsReviewView: View {
     
     @Binding var displayMode: DisplayMode
     
+    private var isAllCorrect: Bool { reviewResults.allSatisfy(\.isCorrect) }
+    
     private let words: [Word]
     
     init(
@@ -79,6 +81,7 @@ struct WordsReviewView: View {
             }
         }
         .padding()
+        .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 Button {
@@ -94,6 +97,7 @@ struct WordsReviewView: View {
                         } label: {
                             Label(systemIcon: .retryReviewWithIncorrectAnswers)
                         }
+                        .disabled(isAllCorrect)
                         
                         Button {
                             retryReview()
