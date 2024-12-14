@@ -1,4 +1,4 @@
-#  외워지리라 / Will Memorise
+#  외워지리라 / Will Memorize
 SwiftData를 활용한 외국어 학습용 단어장 앱
 
 JLPT 자격증 취득을 위해 아이패드 굿노트 앱으로 한자와 히라가나, 한국어를 쓰면서 학습하다가
