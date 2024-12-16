@@ -17,10 +17,10 @@ JLPT 자격증 취득을 위해 아이패드 굿노트 앱으로 한자와 히�
 ### 앱의 주요 기능에 대해 설명합니다.
 
 <p>
-    <img src="https://file.notion.so/f/f/25f54fbb-0d4e-47db-999f-f2704a0bb621/432ef9e1-a837-4f55-9b32-8eca74fa9827/1TYRTbddXT4i_2048_2732.png?table=block&id=157263c0-5a08-80ec-9d5a-ca32c7d0ae2e&spaceId=25f54fbb-0d4e-47db-999f-f2704a0bb621&expirationTimestamp=1734242400000&signature=VDw0KSz00iuFUbPqcxnveozRKAPlrD0hprjDbrhE45M&downloadName=1TYRTbddXT4i_2048_2732.png" alt="1" width="200px">
-    <img src="https://file.notion.so/f/f/25f54fbb-0d4e-47db-999f-f2704a0bb621/fe7397ba-662c-45ea-806b-f74a4b63b02d/dP1DiXjHXtoH_2048_2732.png?table=block&id=157263c0-5a08-806e-b955-d220987b4643&spaceId=25f54fbb-0d4e-47db-999f-f2704a0bb621&expirationTimestamp=1734242400000&signature=kOrxEVuf_wKf9bwOrmKUqRDjCdG8lf7pVSffInB_QKw&downloadName=dP1DiXjHXtoH_2048_2732.png" alt="2" width="200px">
-    <img src="https://file.notion.so/f/f/25f54fbb-0d4e-47db-999f-f2704a0bb621/d09c9889-86ea-43ba-94b2-fef6d436df3b/yZO0ClIXYaOp_2048_2732.png?table=block&id=157263c0-5a08-8054-8e40-f0c0e6a0c1aa&spaceId=25f54fbb-0d4e-47db-999f-f2704a0bb621&expirationTimestamp=1734242400000&signature=luPX6zQOBgPse51wjI88zy9dPSglhf1JK9ActahN9pY&downloadName=yZO0ClIXYaOp_2048_2732.png" alt="3" width="200px">
-    <img src="https://file.notion.so/f/f/25f54fbb-0d4e-47db-999f-f2704a0bb621/ff4b7b99-6c75-4034-a6c5-d2d449c72bf9/uMVCYsDNAEfM_2048_2732.png?table=block&id=157263c0-5a08-804a-ac33-e656caf46cf8&spaceId=25f54fbb-0d4e-47db-999f-f2704a0bb621&expirationTimestamp=1734242400000&signature=v2Pw_5qZ00XfXjdzsh4pKFVcS4097mRxoS1gttWWHd4&downloadName=uMVCYsDNAEfM_2048_2732.png" alt="4" width="200px">
+    <img src="https://github.com/Remaked-Swain/ScreenShotRepository/blob/main/Vocabulary/1.png?raw=true" alt="1" width="200px">
+    <img src="https://github.com/Remaked-Swain/ScreenShotRepository/blob/main/Vocabulary/2.png?raw=true" alt="2" width="200px">
+    <img src="https://github.com/Remaked-Swain/ScreenShotRepository/blob/main/Vocabulary/3.png?raw=true" alt="3" width="200px">
+    <img src="https://github.com/Remaked-Swain/ScreenShotRepository/blob/main/Vocabulary/4.png?raw=true" alt="4" width="200px">
 </p> 
 
 **기록하고 저장하기**
