@@ -4,6 +4,7 @@ SwiftData를 활용한 외국어 학습용 단어장 앱
 JLPT 자격증 취득을 위해 아이패드 굿노트 앱으로 한자와 히라가나, 한국어를 쓰면서 학습하다가
 단어장 자체를 만드는데 시간을 쏟고 정작 단어를 암기하는 효율은 부족함을 깨달아 직접 만든 외국어 학습용 단어장 앱
 
+![App Store](https://img.shields.io/badge/App%20Store-Download-007AFF?style=flat-square&logo=apple)
 [앱스토어에서 다운로드](https://apps.apple.com/kr/app/%EC%99%B8%EC%9B%8C%EC%A7%80%EB%A6%AC%EB%9D%BC/id6739422823)
 
 ## Overview
